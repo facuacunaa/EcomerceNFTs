@@ -37,7 +37,9 @@ import { getProductsByCategory } from "../../asyncMock"
       
      } ,[categoryId])
 
-    
+     if (loading) {
+      return <h1 style={{textAlign:'center'}}>Cargando...</h1>
+  }
   // const productosTransformados = products.map( product=> <li>{product.name}</li>)
 
 
@@ -47,12 +49,12 @@ import { getProductsByCategory } from "../../asyncMock"
     return (
 
       <div className="ItemListConteiner">
-      <h1 style={{text:'center'}}>Nuestros productos</h1>
+      <h1 style={{textAlign:'center'}}>Nuestros productos</h1>
       <div style={{display:'flex', flexDirection:'row',  justifyContent:'space-around'}}>
         {products.map(prod =>(
           <div key={prod.id}>
             <h1>{prod.name}</h1>
-            <Link to={`/detail/${prod.id}`}>ver Detalle</Link>
+            <Link to={`/detail/${prod.id}`} style={{}}>ver Detalle</Link>
             </div>
         ))
   }

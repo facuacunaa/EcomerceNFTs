@@ -4,7 +4,7 @@ const products = [
     name: 'Bumper Delantero',
     price:  '$98.000',
     category:'Camionetas',
-    img: './CartWidget/Assets/HTB1X5r0px9YBuNjy0Ff760IsVXao.png',
+    img: '/src/componentes/CartWidget/Assets/bumper1',
     stock:'10',
     description:'Descripcion del producto'
 

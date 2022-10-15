@@ -17,7 +17,7 @@ const Navbar = () => {
             </Link>
            </div> 
 
-           <div className="categories" style={{ }}>
+           <div className="categories" style={{textDecoration:'none' }}>
                    <Link to='/category/Accesorios'  classname="option"> Accesorios </Link>
                    <Link to='/category/Camionetas' className="option"> Camionetas </Link>
                   <Link to='/category/Autos' className="option"> Autos </Link> 
