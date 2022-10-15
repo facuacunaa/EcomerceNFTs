@@ -6,25 +6,37 @@ import ItemListContainer from './componentes/ItemListContainer/ItemListContainer
 import CartWidget from './componentes/CartWidget/CartWidget';
 import Counter from './componentes/Counter/Counter';
 import ItemDetailContainer from './componentes/ItemDetailContainer/ItemDetailContainer';
-import {BrowserRouter, Routes, Route, link} from 'react-router-dom'
+import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'
+import ItemList from './componentes/ItemList/ItemList';
+
+
 
 
 
 function App() {
 
-  const handleOnAdd = () => console.log ('agregar al carrito')
+  
 
 
   return (
     <div className='app'>
       
+       
+       <BrowserRouter>
        <Navbar/>
-      <h1> <ItemListContainer greeting={'Compra tus productos'}/></h1 >
-      <ItemDetailContainer/>
-        
-        <section>
-       {/*<Counter initial= {0} stock={10} onAdd={handleOnAdd}/>*/}
-       </section>
+       <h1>Bienvenidos</h1>
+     {/*  <div>
+          <Link to='/'>Listado</Link>
+          <Link to='/detail'>Detalle</Link>
+  </div>*/}
+
+       <Routes>
+         <Route path='/' element= {<ItemListContainer />} />
+         <Route path='/category/:categoryId' element ={<ItemListContainer/>}/>
+         <Route path='/detail/:productId' element ={<ItemDetailContainer/>} />
+      </Routes>
+      </BrowserRouter>
+       
     </div>
 
 
