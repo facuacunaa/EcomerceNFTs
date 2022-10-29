@@ -1,51 +1,69 @@
-  import { useEffect, useState } from "react"
+  import { useEffect, useState, useContext } from "react"
 import { Link, useParams } from "react-router-dom"
-import { getProducts } from "../../asyncMock"
+//import { getProducts } from "../../asyncMock"
 import ItemList from "../ItemList/ItemList"
 import './ItemListContainer.css'
-import { getProductsByCategory } from "../../asyncMock"
+import {getDocs, collection, query, where} from 'firebase/firestore'
+import { db } from "../../services"
+import {NotificationContext} from '../notification/notification'
+
+//import { getProducts, getProductsByCategory } from "../../asyncMock"
   
   const ItemListContainer = ({greeting}) => {
     const [products, setProducts] = useState([])
-    const [error, setError] =useState(false)
     const [loading, setLoading] =useState(true)
   
+   const {setNotification} = useContext(NotificationContext)
+
     const {categoryId } = useParams()
-   
+
+
     useEffect (() => {
-      if (!categoryId){
-      getProducts().then(products => {
-        setProducts(products)
-        
-        }).catch(error=> {
-          console.log(error)
-          setError(true)
-          
-        }).finally (() => {
-          setLoading(false)
-        })
-      } else {
-        getProductsByCategory(categoryId).then(res =>{
-          setProducts(res)
-      }).catch(error => {
-        console.log(error)
-        setError(true)
-      }).finally(() => {
-        setLoading(false)
+      setLoading(true)
+
+     // const asyncFunction = categoryId ? getProductsByCategory : getProducts
+    const collectionRef = categoryId
+    ? query(collection(db, 'products'), where('category', '==', categoryId ))
+    : collection(db, 'products')
+    
+    //collection(db, 'products')
+
+    getDocs(collectionRef).then(response => {
+      console.log(response)
+
+      const productsAdapted= response.docs.map(doc => {
+        const data = doc.data()
+        console.log(data)
+       return { id: doc.id, ...data}
       })
-      }
-      
-     } ,[categoryId])
+     
+     setProducts (productsAdapted)
+    })
+    .catch(error => {
+      setNotification('error', 'No se pueden obtener los productos')
 
-     if (loading) {
-      return <h1 style={{textAlign:'center'}}>Cargando...</h1>
+    })
+    
+    . finally(() => {
+      setLoading(false)
+    }
+    )
+   
+  //  asyncFunction (categoryId) .then(response=> {
+     //   setProducts(products)
+      //  }).catch(error=> {
+      //    console.log(error)
+          
+      //  }).finally (() => {
+      //    setLoading(false)
+      //  })
+      }, [categoryId])
+
+     if (loading && true) {
+      return <h1 style={{textAlign:'center'}}>Cargando productos...</h1>
   }
-  // const productosTransformados = products.map( product=> <li>{product.name}</li>)
 
-
-
-   
-   
+      
     return (
 
       <div className="ItemListConteiner">
