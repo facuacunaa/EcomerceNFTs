@@ -29,7 +29,7 @@ function App () {
        
        <BrowserRouter>
        <Navbar/>
-       <h1>Bienvenidos</h1>
+       
      {/*  <div>
           <Link to='/'>Listado</Link>
           <Link to='/detail'>Detalle</Link>

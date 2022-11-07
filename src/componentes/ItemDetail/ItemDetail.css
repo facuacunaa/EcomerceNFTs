@@ -1,12 +1,16 @@
 .CardItem {
     width: 500px;
-    padding: 30px;
-    margin: 30px;
+    height: 600px;
+    padding: 20px;
+    margin: 10px;
     font-size: 10px;
-    background-color: silver;
+    background-color: whitesmoke;
+    box-shadow: 20px 15px 0px;
     border: 1px solid #e1e1e1;
     border-radius: 10px;
     box-shadow: 25px;
+    margin-left: 100px;
+    
 }
 
 .ContainerItem {
@@ -29,8 +33,12 @@
 
 
 .ItemImg {
-    width: 100px;
-    height: 100px;
+    width: 250px;
+    height: 250px;
+    border-radius: 5px;
+    box-shadow: 10px 5px 20px;
+    margin-bottom: 25px;
+    
     object-fit: cover;
     object-position: center;
 }

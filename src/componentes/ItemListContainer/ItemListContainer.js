@@ -67,12 +67,15 @@ import {NotificationContext} from '../notification/notification'
     return (
 
       <div className="ItemListConteiner">
-      <h1 style={{textAlign:'center'}}>Nuestros productos</h1>
-      <div style={{display:'flex', flexDirection:'row',  justifyContent:'space-around'}}>
+      <h1 className="tituloprod">Nuestros productos</h1>
+      <div className="cartdiv">
         {products.map(prod =>(
           <div key={prod.id}>
-            <h1>{prod.name}</h1>
-            <Link to={`/detail/${prod.id}`} style={{}}>ver Detalle</Link>
+            <h1 className="titulo">{prod.name}</h1>
+          <div>  <img src={prod.img} className="ItemImg"/></div>
+            
+            <Link className="linkdetalles" to={`/detail/${prod.id}`}>Ver detalles</Link>
+            
             </div>
         ))
   }

@@ -34,16 +34,16 @@ console.log(categories)
 
     return (
 
-        <nav className="NavBar" style={{display:'flex' , justifyContent:'space-between', backgroundColor:'gray', border:'solid'}}>
+        <nav className="NavBar" style={{display:'flex' , justifyContent:'space-between'}}>
         
            <div className='NavBar'>
             <Link to= '/'>
-                   <h1> E-Comerce</h1>
+                   <h1 className='marca'> Bumper.Adds</h1>
             </Link>
            </div> 
 
            <div className="Categories" style={{textDecoration:'none' }}>
-                   <Link to='/category/Accesorios'  classname="option"> Accesorios </Link>
+                   <Link to='/category/Accesorios'  className="option"> Accesorios </Link>
                    <Link to='/category/Camionetas' className="option"> Camionetas </Link>
                   <Link to='/category/Autos' className="option"> Autos </Link> 
           </div>

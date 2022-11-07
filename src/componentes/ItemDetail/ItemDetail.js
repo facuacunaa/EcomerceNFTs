@@ -40,10 +40,10 @@ const ItemDetail = ({id, name, img, categoria, descripcion, price, stock, }) => 
         </picture>   
         <section>
             <p className="Info">
-                categoria:{categoria}
+                Categoria:{categoria}
             </p>
             <p className="Info">
-                descripcion: {descripcion}
+                Descripcion: {descripcion}
             </p>
             <p className="Info">
                 Precio: {price}
