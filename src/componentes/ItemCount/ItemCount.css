@@ -1,6 +1,16 @@
-.Button{
-    height: 50px;
+.Button{ 
+  
 }
 .Controls{
     
+}
+.Numer{
+   font-size: 15px;
+}
+.AgCarrito{
+    font-size: 15px;
+    border-radius: 5px;
+    margin-top: 5px;
+    background-color: black;
+    color: white;
 }

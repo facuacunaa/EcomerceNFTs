@@ -7,10 +7,15 @@
 .linkdetalles{
     
     text-decoration: none;
-    font-size: 17px;
+    font-size: 14px;
     color: black;
     margin: auto;
     font-weight: 550;
+    box-shadow: 0px 0px 1px 1px;
+    border-radius: 10px;
+    border-width: 100;
+    padding: 3px;
+    letter-spacing: 4px;
 
 
     
@@ -18,38 +23,56 @@
 
 }
 .ItemListConteiner{
-    background: rgba( 255, 255, 255, 0 );
-box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-backdrop-filter: blur( 16.5px );
--webkit-backdrop-filter: blur( 16.5px );
-border-radius: 8px;
+    background-color: #ecccf9;
+    background-image: linear-gradient(45deg, #ecccf9 0%, #ffffff 100%);
+    
+border-radius: 30px;
 border: 1px solid rgba( 255, 255, 255, 0.18 );
     
-    height: 520px;
+    height: 600px;
     width: 1200px;
     margin-left: 80px;
     font-family: sans-serif;
     margin-top: 50px;
+    
 }
 .titulo{
 
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     color: black;
   text-decoration: none;
-  font-size: 1.1em;
-  
+  font-size: 1em;
   font-weight: 600;
   padding: auto;
-  width: 20px;
-  padding-left: 80px;
+  margin-left: 45px;
+  font-family: sans-serif;
+  font-weight: lighter;
+  letter-spacing: 4px;
+  
+  border-radius: 7px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100px;
+  padding-left: 20px;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
+  
   
 }
 .tituloprod{
     font-family:sans-serif;
     font-weight: 50;
-
-    
+    color: white;
+    background-color: black;
+    border-style: solid;
+    border-color: white;
     margin-bottom: 30px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding: auto;
+    box-shadow: 0px 0px 3px -1px ;
+    letter-spacing: 5px;
+    margin: 40px;
+    border-radius: 20px;
 }

@@ -38,7 +38,7 @@ console.log(categories)
         
            <div className='NavBar'>
             <Link to= '/'>
-                   <h1 className='marca'> Bumper.Adds</h1>
+                   <h1 className='marca'> Bumper.s</h1>
             </Link>
            </div> 
 

@@ -1,6 +1,6 @@
 .CardItem {
-    width: 500px;
-    height: 600px;
+    width: auto;
+    height: auto;
     padding: 20px;
     margin: 10px;
     font-size: 10px;
@@ -26,19 +26,26 @@
 }
 
 .Info {
-    font-size: 12px;
+    font-size: 18px;
     display: flex;
     justify-content: space-around;
+    
 }
 
 
 .ItemImg {
-    width: 250px;
-    height: 250px;
-    border-radius: 5px;
-    box-shadow: 10px 5px 20px;
-    margin-bottom: 25px;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: -5px 5px 20px;
+    margin-bottom: 30px;
+    border-style: solid;
+    padding-bottom: 20px;
+    padding-top: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
     
     object-fit: cover;
     object-position: center;
 }
+

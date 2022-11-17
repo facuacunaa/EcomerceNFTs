@@ -67,7 +67,7 @@ import {NotificationContext} from '../notification/notification'
     return (
 
       <div className="ItemListConteiner">
-      <h1 className="tituloprod">Nuestros productos</h1>
+      <h1 className="tituloprod">NUESTROS PRODUCTOS</h1>
       <div className="cartdiv">
         {products.map(prod =>(
           <div key={prod.id}>
