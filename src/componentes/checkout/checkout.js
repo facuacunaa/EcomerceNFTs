@@ -1,80 +1,98 @@
-import { useState, useContext } from "react"
-import { CartContext } from "../context/CartContext"
-import { getDocs, addDoc, collection, doc, updateDoc, where, query, documentId, writeBatch } from 'firebase/firestore'
-import { db } from "../../services"
+import { useContext } from 'react'
+import { CartContext } from '../context/CartContext'
+import React, { useState } from 'react'
+import './form.css'
 
-const Checkout = () => {
-    const [loading, setLoading] = useState(false)
+export default function Form ({createOrder}) {
+    const {cart} = useContext(CartContext)
+    const [dataForm, setDataForm] = useState({
+        name: "",
+        surname: "",
+        phone: "",
+        email: ""
+      });
 
-    const { cart, total, clearCart } = useContext(CartContext)
+    const {name, phone, email} = useState("");
 
-    const createOrder = async () => {
-        setLoading(true)
-        try {
-            const objOrder = {
-                buyer: {
-                    name: 'Acuña Facundo',
-                    phone: '123456789',
-                    email: 'facuagustin17@gmail.com'
-                },
-                items: cart,
-                total
-            }
-    
-            console.log(objOrder)
-    
-            const ids = cart.map(prod => prod.id)
-            const productsRef = collection(db, 'products')
-    
-            const productsAddedFromFirestore = await getDocs(query(productsRef, where(documentId(), 'in' , ids)))
-            const { docs } = productsAddedFromFirestore
-    
-            const batch = writeBatch(db)
-            const outOfStock = []
-    
-            docs.forEach(doc => {
-                const dataDoc = doc.data()
-                const stockDb = dataDoc.stock
-    
-                const productAddedToCart = cart.find(prod => prod.id === doc.id)
-                const prodQuantity = productAddedToCart?.quantity
-    
-                if(stockDb >= prodQuantity) {
-                    batch.update(doc.ref, { stock: stockDb - prodQuantity })
-                } else {
-                    outOfStock.push({ id: doc.id, ...dataDoc})
-                }
-            })
-    
-            if(outOfStock.length === 0) {
-                await batch.commit()
-    
-                const orderRef = collection(db, 'orders')
-                const orderAdded = await addDoc(orderRef, objOrder)
-    
-                console.log(`El id de su orden es: ${orderAdded.id}`)
-                clearCart()
-            } else {
-                console.log('Hay productos fuera de stock')
-            }
-        } catch (error) {
-            console.log(error)
-        } finally {
-            setLoading(false)
-        }
+    function onInputChange(evt) {
+        setDataForm({
+            ...dataForm,
+            [evt.target.name] : evt.target.value
+        })
     }
+    
+    function onSubmit(evt) {
+        evt.preventDefault();
+        alert(`Sus datos ingresados son: Nombre ${dataForm.name} ${dataForm.surname}, y su email es ${dataForm.email}`);
+        if(name === '' || email === '' || phone === ''){
+           alert ('Todos los campos son requeridos');
+            return;
+        }
+        if(cart.length === 0){
+           alert ('No hay productos agregados al carrito');
+            return;
+        }
 
-    if(loading) {
-        return <h1>Su orden se esta generando...</h1>
+        const buyer = ({
+            name: dataForm.name,
+            surname: dataForm.surname,
+            email: dataForm.email,
+            phone: dataForm.phone
+        })
+        createOrder(buyer);
     }
 
     return (
-        <>
-            <h1>Checkout</h1>
-            <button onClick={createOrder}>Agregar documento</button>
-            
-        </>
+
+    <form className="form-register" onSubmit={onSubmit}>
+    <h4>Confirmar compra</h4>
+    <div>
+    <input className="controls"
+        value={dataForm.name}
+        onChange ={onInputChange}
+        name="name"
+        type="text"
+        placeholder="Ingrese su Nombre"
+        required 
+    />
+    </div>
+    <div>
+    <input className="controls" 
+        value={dataForm.surname}
+        onChange={onInputChange}
+        name="surname"
+        type="text"
+        placeholder="Ingrese su Apellido"
+        required
+    />
+    </div>
+    <div>
+    <input className="controls"
+        value={dataForm.phone}
+        onChange={onInputChange}
+        name="phone"
+        type="text"
+        placeholder="Ingrese su Télefono"
+        required
+    />
+    </div>
+    <div>
+    <input className="controls"
+        value={dataForm.email}
+        onChange={onInputChange}
+        name="email"
+        type="text"
+        placeholder="Ingrese su Correo"
+        required
+    />
+    </div>
+    <div>
+    <button className="botons" 
+    type="submit" 
+    onClick={onSubmit}
+    >
+    Enviar orden</button>        
+    </div>
+    </form >
     )
 }
-
-export default Checkout
